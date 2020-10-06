@@ -14,10 +14,9 @@
         {% if title %}
             <title>MillaTrening - {{title}}</title>
         {% else %}
-            <title>MilleTrening</title>
+            <title>MillaTrening</title>
         {% endif %}
     </head>
-    <body>
         {% include "sitewide/navbar.html" %}
         {% block content %}{% endblock %}
         {% include "sitewide/footer.html" %}
