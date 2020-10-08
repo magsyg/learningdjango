@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'sitewide.apps.SitewideConfig',
     'users.apps.UsersConfig',
     'trening.apps.TreningConfig',
+    'widget_tweaks',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

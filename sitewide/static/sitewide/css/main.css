@@ -107,9 +107,6 @@ a:hover {
   padding-right: 4em;
 }
 
-nav {
-
-}
 
 #breadcrumb {
   background-color: rgba(25,25,35,0.8);
@@ -132,4 +129,13 @@ nav {
   background: rgba(100,20,20,0.2);
   /* Space between content and footer */
   margin-top: 2em;
+}
+
+.content {
+  padding: 16px;
+  min-height: 50vh;
+}
+.logout {
+  text-align: center;
+  align-self: center;
 }
