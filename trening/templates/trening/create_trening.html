@@ -1,0 +1,31 @@
+{% extends "sitewide/base.html"%}
+{% load widget_tweaks %}
+{% block title %}Registrer Okt{% endblock %}
+{% block content %}
+    <div class="content-section">
+        <form method="post" novalidate>
+            {% csrf_token %}
+            <legend class="border-bottom mb-4">Registrer trening</legend>
+            <div class="form-group">
+                {{ form.treningtype.label_tag }}
+                {% render_field form.treningtype class="form-control" %}
+                {% for error in from.treningstype.errors %}
+                    <div class="invalid-feedback">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                {{ form.distance.label_tag }}
+                {% render_field form.distance class="form-control" %}
+                {% for error in from.distance.errors %}
+                    <div class="invalid-feedback">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            </div>
+        </form>
+    </div>
+{% endblock content %}
+{% block scripts %}
+{% endblock %}
