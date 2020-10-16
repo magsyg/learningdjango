@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from . import forms
 
 # Create your views here.
@@ -13,6 +14,7 @@ def register(request):
             o = form.save(commit=False)
             o.user = request.user
             o.save()
+            messages.success(request, 'Training Registered!')
             return redirect('landing')
     else:
         form = forms.WorkoutForm()
