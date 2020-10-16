@@ -15,12 +15,15 @@ class User(AbstractBaseUser, PermissionsMixin):
         ('GR', 'General')
     ]
     section = models.CharField(_('section'),max_length=2, choices=SECTIONS, default='TR')
+    score = models.IntegerField(_('score'), default=0)
     
     objects = UserManager()
+    is_staff = models.BooleanField(_('staff'), default=False)
+    is_superuser = models.BooleanField(_('superuser'), default=False)
 
     USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['sections']
+    REQUIRED_FIELDS = []
+
     class Meta:
         verbose_name = _('user')
         verbose_name_plural = _('users')
-
