@@ -22,8 +22,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     section = models.ForeignKey(Section, null = True, default= None, on_delete=models.SET_NULL)
 
-    score = models.IntegerField(_('score'), default=0)
-    
     objects = UserManager()
     is_staff = models.BooleanField(_('staff'), default=False)
     is_superuser = models.BooleanField(_('superuser'), default=False)
@@ -37,3 +35,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     def distance_sum(self):
         return self.workouts.all().aggregate(Sum('distance'))['distance__sum'] or 0
     
+    def score(self):
+        return self.workouts.all().aggregate(Sum('score'))['score__sum']
+        

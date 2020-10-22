@@ -45,9 +45,9 @@
   <script type="text/javascript">
     $(document).ready(function() {
         $("#type-field").change(function (e) {
-            const hide_values = [0,4];
-            console.log(hide_values.includes(parseInt(e.currentTarget.value)))
-            if(hide_values.includes(parseInt(e.currentTarget.value))) {
+            const hide_values = ['sty','non'];
+            console.log(hide_values.includes(e.currentTarget.value))
+            if(hide_values.includes(e.currentTarget.value)) {
                  document.getElementById("distance-group").style.display = "none";
             } else document.getElementById("distance-group").style.display = "block";
         });

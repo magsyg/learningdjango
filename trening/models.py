@@ -6,11 +6,11 @@ from datetime import date
 class Workout(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null = True, blank=False, verbose_name="Bruker", related_name="workouts")
     
-    EMPTY = 0
-    SKI = 1
-    LOPE = 2
-    SVOMMING = 3
-    STYRKE = 4
+    EMPTY = "non"
+    SKI = "ski"
+    LOPE = "lop"
+    SVOMMING = "svm"
+    STYRKE = "sty"
 
     TYPES = [   
         (EMPTY, '--------'),
@@ -19,18 +19,32 @@ class Workout(models.Model):
         (SVOMMING, 'Svømming'),
         (STYRKE, 'Styrke')
     ]
-
-    treningtype = models.IntegerField(choices=TYPES, default=EMPTY, verbose_name="Treningstype")
+    M_DATA = {
+        EMPTY: (0,0,'--------'),
+        SKI: (0,1, 'Ski'),
+        LOPE: (0,1, 'Løpe'),
+        SVOMMING: (0, 2, 'Svømming'),
+        STYRKE: (1.5, 0, 'Styrke')
+    }
+    score = models.FloatField(default=0, verbose_name="Score")
+    treningtype = models.CharField(choices=TYPES, max_length=3, default=EMPTY, verbose_name="Treningstype")
     distance = models.FloatField(blank=True, null = True, default = 0, verbose_name="Distanse")
     date = models.DateField(default=date.today, verbose_name="Dato")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="created")
 
     def __str__(self):
         if(self.treningtype == 0 or self.treningtype == 4):
-            return (self.TYPES[self.treningtype][1]+", "+str(self.date))
+            return (self.M_DATA[self.treningtype][2]+", "+str(self.date)+" "+str(self.score))
         else: 
-             return (self.TYPES[self.treningtype][1]+" "+str(self.distance)+"km, "+str(self.date))
+             return (self.M_DATA[self.treningtype][2]+" "+str(self.distance)+"km, "+str(self.date)+" "+str(self.score))
         
+    def save(self, *args, **kwargs):
+        self.score = self.M_DATA[self.treningtype][0]+self.M_DATA[self.treningtype][1]*self.distance
+        super(Workout, self).save(*args, **kwargs)
+
     class Meta:
         verbose_name = 'workout'
         verbose_name_plural = 'workouts'
+
+
+
