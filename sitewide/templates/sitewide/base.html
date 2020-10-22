@@ -39,10 +39,8 @@
                         {% endfor %}
                     {% endif %}
                 </div>
-            </div>
-            <div class = "d-flex justify-content-center content">
-                {% block content %}{% endblock %}
-            </div>
+            </div>   
+            {% block content %}{% endblock %}
         </div>
         {% include "sitewide/footer.html" %}
         <!-- JQuery first, then Popper.js, then Bootstrap JS -->
