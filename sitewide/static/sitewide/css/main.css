@@ -133,8 +133,11 @@ a:hover {
 
 .content {
   padding: 16px;
+  margin: 8px;
   min-height: 50vh;
+  background: red;
 }
+
 .logout {
   text-align: center;
   align-self: center;

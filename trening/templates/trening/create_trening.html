@@ -2,6 +2,7 @@
 {% load widget_tweaks %}
 {% block title %}Registrer Okt{% endblock %}
 {% block content %}
+<div class = "d-flex justify-content-center content">
     <div class="content-section">
         <form method="post" novalidate>
             {% csrf_token %}
@@ -38,6 +39,7 @@
             </div>
         </form>
     </div>
+</div>
 {% endblock content %}
 {% block scripts %}
   <script type="text/javascript">

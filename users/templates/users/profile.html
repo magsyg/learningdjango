@@ -1,0 +1,25 @@
+{% extends "sitewide/base.html"%}
+{% block title %} Profile {% endblock %}
+{% block content %}
+<div class="content">
+    <h1 class="display-4 border-bottom mb-4">{{user.section}} - {{user.username}}</h1>
+    <div class = "row">
+        <div class = "col ">
+            <h4>Treningsøkter</h4>
+            <ul>
+                {% for workout in user.workouts.all %}
+                    <li>{{workout}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class = "col border">
+            <h4>Personlig Statistikk</h4>
+            <div>
+                <p>Total Score: {{user.score}}</p>
+                <p>Antall Økter: {{user.workouts.all|length}}</p>
+                <p>Total Distanse: {{user.distance_sum}} km</p>
+            </div>
+        </div>
+    </div>
+</div> 
+{% endblock content %}
