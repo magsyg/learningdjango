@@ -1,0 +1,9 @@
+{% extends "sitewide/base.html"%}
+{% load widget_tweaks %}
+{% block title %}Results{% endblock %}
+{% block content %}
+    <div class="content">
+        <h1 class="mb-4">Results:</h1>      
+        {% include "sitewide/table.html" with table=t %}
+    </div>
+{% endblock content %}

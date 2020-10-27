@@ -34,7 +34,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     
     def distance_sum(self):
         return self.workouts.all().aggregate(Sum('distance'))['distance__sum'] or 0
-    
+
+    def total_workouts(self):
+        return len(self.workouts.all())
+
     def score(self):
-        return self.workouts.all().aggregate(Sum('score'))['score__sum']
+        return self.workouts.all().aggregate(Sum('score'))['score__sum'] or 0
         
