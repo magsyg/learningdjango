@@ -1,0 +1,41 @@
+{% load static %}
+{% load custom_tags %} 
+{% block head %}
+    <style>
+        .custom-table {
+            color: white;
+            margin-top: 0px;
+        }
+        .custom-table tbody tr:hover {
+            background: grey
+        }
+        .marked {
+            background: green
+        }
+    </style>
+{% endblock %}
+
+<table class="table custom-table">
+    <thead>
+        <tr>
+            {% for k in table.header %}
+                <th> {{k}} </th>
+            {% endfor %}       
+        </tr>
+    </thead>
+    <tbody>
+        {% for r in table.rows %}
+            <tr>
+                {% if r.marked %}
+                    {% for k in table.header %}
+                        <td class ="marked">{{r|keyvalue:k}}</td>
+                    {% endfor %}
+                {% else %}
+                    {% for k in table.header %}
+                        <td>{{r|keyvalue:k}}</td>
+                    {% endfor %}
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
